@@ -1,0 +1,21 @@
+server:
+  port: ${PORT:8088}
+
+app:
+  name: Patient Portal Rest API
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./db/datafile.h2;MODE=PostgreSQL;
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    org:
+      atmosphere: warn

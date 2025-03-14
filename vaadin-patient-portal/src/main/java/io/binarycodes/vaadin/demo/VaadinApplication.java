@@ -8,9 +8,9 @@ import com.vaadin.flow.theme.Theme;
 
 @SpringBootApplication
 @Theme("patient-portal")
-public class Application implements AppShellConfigurator {
+public class VaadinApplication implements AppShellConfigurator {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(VaadinApplication.class, args);
     }
 }

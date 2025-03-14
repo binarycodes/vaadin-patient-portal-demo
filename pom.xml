@@ -13,6 +13,7 @@
     <modules>
         <module>backend-patient-portal</module>
         <module>vaadin-patient-portal</module>
+        <module>rest-patient-portal</module>
     </modules>
 
 </project>
