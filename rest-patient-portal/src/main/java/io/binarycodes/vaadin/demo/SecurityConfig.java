@@ -39,8 +39,8 @@ public class SecurityConfig {
 
     @Autowired
     public SecurityConfig(DummyUserService dummyUserService,
-                          @Value("${jwt.public.key}") RSAPublicKey publicKey,
-                          @Value("${jwt.private.key}") RSAPrivateKey privateKey) {
+                          @Value("${jwt.public-key}") RSAPublicKey publicKey,
+                          @Value("${jwt.private-key}") RSAPrivateKey privateKey) {
         this.dummyUserService = dummyUserService;
         this.publicKey = publicKey;
         this.privateKey = privateKey;
@@ -54,12 +54,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
-                .csrf((csrf) -> csrf.ignoringRequestMatchers(AUTHENTICATION_ENDPOINT))
+                .authorizeHttpRequests(authorize -> {
+                    authorize.requestMatchers(AUTHENTICATION_ENDPOINT).permitAll()
+                            .anyRequest().authenticated();
+                })
+                .csrf(csrf -> csrf.ignoringRequestMatchers(AUTHENTICATION_ENDPOINT))
                 .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(config -> config.jwt(Customizer.withDefaults()))
-                .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling((exceptions) -> exceptions
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint(new BearerTokenAuthenticationEntryPoint())
                         .accessDeniedHandler(new BearerTokenAccessDeniedHandler())
                 );

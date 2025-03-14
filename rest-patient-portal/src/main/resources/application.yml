@@ -15,7 +15,12 @@ spring:
     hibernate:
       ddl-auto: update
 
+jwt:
+  public-key: classpath:jwt.public.key
+  private-key: classpath:jwt.private.key
+
 logging:
   level:
     org:
       atmosphere: warn
+      springframework: debug
