@@ -1,0 +1,14 @@
+name: rest-patient-portal
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - rest-patient-portal/**
+      - .github/workflows/rest-workflow.yml
+
+jobs:
+  run:
+    uses: ./.github/workflows/generic-workflow.yml
+    with:
+      service: rest-patient-portal
