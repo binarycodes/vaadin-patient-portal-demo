@@ -1,0 +1,14 @@
+name: vaadin-patient-portal
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - vaadin-patient-portal/**
+      - .github/workflows/vaadin-workflow.yml
+
+jobs:
+  run:
+    uses: ./.github/workflows/generic-workflow.yml
+    with:
+      service: vaadin-patient-portal

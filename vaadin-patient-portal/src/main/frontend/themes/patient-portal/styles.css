@@ -1,0 +1,11 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+vaadin-tab::before {
+    width: 80%;
+}
+
+vaadin-tabsheet::part(content){
+    padding-block: 2rem;
+}

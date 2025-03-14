@@ -1,0 +1,9 @@
+db/
+/target/
+.idea/
+.vscode/
+.settings
+.project
+.classpath
+
+*.jar

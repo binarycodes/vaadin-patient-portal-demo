@@ -1,0 +1,14 @@
+name: backend-patient-portal
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - backend-patient-portal/**
+      - .github/workflows/backend-workflow.yml
+
+jobs:
+  run:
+    uses: ./.github/workflows/generic-workflow.yml
+    with:
+      service: backend-patient-portal
