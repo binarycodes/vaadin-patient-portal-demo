@@ -2,6 +2,8 @@ package io.binarycodes.vaadin.demo;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.List;
+import java.util.stream.Stream;
 
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -11,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -25,6 +29,9 @@ import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthen
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /* reference from https://martinelli.ch/angular-15-spring-boot-3-and-jwt/ */
 
@@ -54,6 +61,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .cors(config -> config.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers(AUTHENTICATION_ENDPOINT).permitAll()
                             .anyRequest().authenticated();
@@ -91,4 +99,23 @@ public class SecurityConfig {
         return jwtAuthenticationConverter;
     }
 
+    private CorsConfigurationSource corsConfigurationSource() {
+        final var corsSupportedMethods = Stream.of(
+                        HttpMethod.GET, HttpMethod.POST, HttpMethod.OPTIONS
+                )
+                .map(HttpMethod::name)
+                .toList();
+
+        final var corsSupportedHeaders = Stream.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE)
+                .toList();
+
+        var cfg = new CorsConfiguration();
+        cfg.setAllowedOrigins(List.of("http://localhost:4200"));
+        cfg.setAllowedMethods(corsSupportedMethods);
+        cfg.setAllowedHeaders(corsSupportedHeaders);
+
+        var src = new UrlBasedCorsConfigurationSource();
+        src.registerCorsConfiguration("/**", cfg);
+        return src;
+    }
 }

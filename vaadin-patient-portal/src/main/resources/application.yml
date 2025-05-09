@@ -8,7 +8,7 @@ spring:
   mustache:
     check-template-location: false
   datasource:
-    url: jdbc:h2:file:./db/datafile.h2;MODE=PostgreSQL;
+    url: jdbc:h2:file:./db/datafile.h2;MODE=PostgreSQL;AUTO_SERVER=TRUE
     username: sa
     password: password
     driverClassName: org.h2.Driver
