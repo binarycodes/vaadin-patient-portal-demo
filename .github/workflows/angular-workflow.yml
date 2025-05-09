@@ -1,0 +1,33 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - angular-patient-portal/**
+      - .github/workflows/angular-workflow.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: angular-patient-portal
+
+    steps:
+      - name: checkout source
+        uses: actions/checkout@v4
+
+      - name: setup node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: angular-patient-portal/package-lock.json
+
+      - name: install dependencies
+        run: npm ci
+
+      - name: build application
+        run: npm run build -- --configuration=production
