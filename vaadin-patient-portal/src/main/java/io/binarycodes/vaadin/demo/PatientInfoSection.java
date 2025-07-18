@@ -17,6 +17,7 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Section;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 import com.vaadin.flow.component.textfield.IntegerField;
@@ -69,23 +70,25 @@ public class PatientInfoSection extends Section {
     }
 
     private void init(Patient patient) {
-        var headerWrapper = new Div();
-        headerWrapper.addClassNames(Display.FLEX, FlexDirection.ROW, LumoUtility.JustifyContent.BETWEEN, LumoUtility.Padding.Bottom.XLARGE);
-
-        var headerTitle = new H2(patient.getName());
-        var closeButton = new Button(VaadinIcon.CLOSE.create(), e -> close());
-        closeButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE, ButtonVariant.LUMO_ICON);
-        headerWrapper.add(headerTitle, closeButton);
-
         var avatar = new Avatar(patient.getName(), patient.getAvatarUrl());
         avatar.addThemeVariants(AvatarVariant.LUMO_XLARGE);
 
-        var formLayout = createFormLayout(patient, avatar);
+        var headerTitle = new H2(avatar, new Span(patient.getName()));
+        headerTitle.addClassNames(Display.FLEX, LumoUtility.Gap.MEDIUM, LumoUtility.AlignItems.CENTER);
+
+        var closeButton = new Button(VaadinIcon.CLOSE.create(), e -> close());
+        closeButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE, ButtonVariant.LUMO_ICON);
+
+        var headerWrapper = new Div();
+        headerWrapper.addClassNames(Display.FLEX, FlexDirection.ROW, LumoUtility.JustifyContent.BETWEEN, LumoUtility.Padding.Bottom.XLARGE);
+        headerWrapper.add(headerTitle, closeButton);
+
+        var formLayout = createFormLayout(patient);
 
         add(headerWrapper, formLayout);
     }
 
-    private Component createFormLayout(Patient patient, Avatar avatar) {
+    private Component createFormLayout(Patient patient) {
         var firstNameField = new TextField("First Name");
         var lastNameField = new TextField("Last Name");
         var genderField = new RadioButtonGroup<String>("Gender");
@@ -121,7 +124,7 @@ public class PatientInfoSection extends Section {
         saveButton.addClassNames(LumoUtility.Margin.Vertical.LARGE);
         saveButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
 
-        var wrappedForm = new Div(avatar, formLayout, saveButton);
+        var wrappedForm = new Div(formLayout, saveButton);
         wrappedForm.addClassNames(Display.FLEX, FlexDirection.COLUMN, LumoUtility.Gap.MEDIUM);
         return wrappedForm;
     }

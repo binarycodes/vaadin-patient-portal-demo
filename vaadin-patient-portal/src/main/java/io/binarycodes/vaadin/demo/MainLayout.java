@@ -21,8 +21,9 @@ public class MainLayout extends Div implements RouterLayout {
     public MainLayout(AuthenticationContext authenticationContext, @Value("${app.name}") String appName) {
         this.authenticationContext = authenticationContext;
         this.appName = appName;
-        setSizeFull();
         init();
+        setSizeFull();
+        addClassNames(LumoUtility.Display.FLEX, LumoUtility.FlexDirection.COLUMN);
     }
 
     private void init() {
