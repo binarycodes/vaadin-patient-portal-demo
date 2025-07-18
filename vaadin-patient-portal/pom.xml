@@ -14,33 +14,15 @@
     <properties>
         <backend.version>1.0-SNAPSHOT</backend.version>
         <java.version>21</java.version>
-        <vaadin.version>24.7.3</vaadin.version>
+        <vaadin.version>24.8.3</vaadin.version>
     </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.3</version>
+        <version>3.5.3</version>
         <relativePath/>
     </parent>
-
-    <repositories>
-        <repository>
-            <id>vaadin-prereleases</id>
-            <url>
-                https://maven.vaadin.com/vaadin-prereleases/
-            </url>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>vaadin-prereleases</id>
-            <url>
-                https://maven.vaadin.com/vaadin-prereleases/
-            </url>
-        </pluginRepository>
-    </pluginRepositories>
 
     <dependencyManagement>
         <dependencies>

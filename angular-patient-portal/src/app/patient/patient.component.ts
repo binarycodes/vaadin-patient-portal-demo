@@ -7,14 +7,12 @@ import {MatTableModule} from '@angular/material/table';
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
-  imports: [
-    RouterLink, MatTableModule
-  ],
+  imports: [RouterLink, MatTableModule],
   styleUrls: ['./patient.component.css']
 })
 export class PatientComponent {
   patients: Patient[] = [];
-  displayedColumns: string[] = ['id', 'name'];
+  displayedColumns: string[] = ['name', 'id', 'medicalRecord', 'doctor', 'age', 'lastVisit'];
 
   constructor(private patientService: PatientService) {
   }

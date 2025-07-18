@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+:root {
+  --mat-sys-surface: #ffffff;
+}
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mat-mdc-table .mat-mdc-row:nth-child(odd) {
+  background-color: #f3f5f7;
+}
+
+.mat-mdc-table .mat-mdc-row:nth-child(even) {
+  background-color: #ffffff;
+}
