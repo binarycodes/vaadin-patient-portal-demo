@@ -1,7 +1,8 @@
 import {Routes} from '@angular/router';
 import {AuthGuard} from './auth/auth-guard.service';
-import {LoginComponent} from './login/login.component';
-import {HomeComponent} from './home/home.component';
+import {HomeComponent} from './view/home/home.component';
+import {LoginComponent} from './view/login/login.component';
+
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},

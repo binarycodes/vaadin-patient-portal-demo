@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {Patient} from './patient';
-import {PatientService} from './patient.service';
 import {RouterLink} from '@angular/router';
 import {MatTableModule} from '@angular/material/table';
+import {Patient} from '../../data/patient';
+import {PatientService} from '../../service/patient.service';
+
 
 @Component({
   selector: 'app-patient',
@@ -18,10 +19,10 @@ export class PatientComponent {
   }
 
   ngOnInit() {
-    this.getPersons();
+    this.getPatients();
   }
 
-  getPersons(): void {
+  getPatients(): void {
     this.patientService.findAll().subscribe(patients => this.patients = patients);
   }
 }

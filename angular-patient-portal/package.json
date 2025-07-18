@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^20.1.2",
     "@angular/platform-browser-dynamic": "^20.1.2",
     "@angular/router": "^20.1.2",
+    "@swimlane/ngx-charts": "^23.0.0-alpha.0",
     "@tailwindcss/postcss": "^4.1.11",
     "employee-portal": "file:",
     "jwt-decode": "^4.0.0",

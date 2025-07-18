@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from '../auth/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {jwtDecode, JwtPayload} from 'jwt-decode';
 import {MatFormField, MatInput, MatLabel} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-login',
