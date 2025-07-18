@@ -1,0 +1,17 @@
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  min-width: 500px;
+  max-width: 1000px;
+}
+
+mat-form-field.full-width {
+  grid-column: span 2;
+}
+
+.gender-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

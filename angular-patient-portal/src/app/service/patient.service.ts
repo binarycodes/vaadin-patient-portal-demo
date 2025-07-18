@@ -37,7 +37,7 @@ export class PatientService {
       );
   }
 
-  save(person: Patient): Observable<any> {
-    return this.http.post(`${this.baseUrl}/patient/save`, person);
+  save(person: Patient): Observable<Patient> {
+    return this.http.post<Patient>(`${this.baseUrl}/patient/save`, person);
   }
 }

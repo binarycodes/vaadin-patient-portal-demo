@@ -1,3 +1,5 @@
+import {Gender} from './gender';
+
 export class Patient {
   static readonly AGE_GROUP_PERIOD = 10;
 
@@ -6,7 +8,7 @@ export class Patient {
   name?: string;
   firstName!: string;
   lastName!: string;
-  gender!: string;
+  gender!: Gender;
   ssn!: string;
   doctor!: string;
   medicalRecordNumber!: number;

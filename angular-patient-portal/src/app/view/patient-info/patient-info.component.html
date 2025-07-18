@@ -1,0 +1,55 @@
+<div class="flex flex-row justify-between p-8">
+  <div class="flex flex-row items-center gap-4">
+    <img class="w-14 h-14 rounded-full object-cover" src="{{patient.avatarUrl}}" alt="Photo of {{patient.name}}">
+    <span class="text-xl font-semibold">{{ patient.name }}</span>
+  </div>
+  <button matIconButton aria-label="Close" (click)="drawer.close()">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+
+<form [formGroup]="form" class="form-grid p-8">
+  <mat-form-field appearance="fill">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="firstName">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="lastName">
+  </mat-form-field>
+
+  <div class="form-group flex items-center">
+    <mat-label>Gender</mat-label>
+    <mat-radio-group formControlName="gender">
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date of Birth</mat-label>
+    <input matInput [matDatepicker]="picker" (focus)="picker.open()" formControlName="dateOfBirth">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="col-span-2">
+    <mat-label>SSN</mat-label>
+    <input matInput formControlName="ssn">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Doctor</mat-label>
+    <input matInput formControlName="doctor">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Medical Record</mat-label>
+    <input matInput formControlName="medicalRecordNumber">
+  </mat-form-field>
+</form>
+
+<div class="px-8">
+  <button matButton="filled" (click)="save()">Save</button>
+</div>
