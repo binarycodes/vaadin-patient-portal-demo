@@ -11,7 +11,6 @@ import com.vaadin.flow.router.RouterLayout;
 import com.vaadin.flow.spring.security.AuthenticationContext;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
-@Layout
 @PermitAll
 public class MainLayout extends Div implements RouterLayout {
 

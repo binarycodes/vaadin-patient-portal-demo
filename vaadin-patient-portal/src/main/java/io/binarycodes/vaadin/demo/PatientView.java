@@ -27,7 +27,7 @@ import com.vaadin.flow.component.tabs.TabSheet;
 import com.vaadin.flow.component.tabs.TabSheetVariant;
 import com.vaadin.flow.router.Route;
 
-@Route("")
+@Route(value = "", layout = MainLayout.class, autoLayout = false)
 @PermitAll
 public class PatientView extends VerticalLayout {
 
