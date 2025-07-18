@@ -1,22 +1,33 @@
-<h1>Login</h1>
+<div class="flex items-center justify-center w-full h-full">
+  <div>
+    <h1 class="text-4xl font-medium p-8">
+      {{ environment.appName }}
+    </h1>
 
-<form (ngSubmit)="login()" class="form-horizontal" #loginForm="ngForm">
-  <p>
-    <mat-form-field>
-      <mat-label>Username</mat-label>
-      <input matInput id="username" type="text" name="username" class="form-control" [(ngModel)]="username" required>
-    </mat-form-field>
-  </p>
-  <p>
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input matInput id="password" type="password" name="password" class="form-control" [(ngModel)]="password"
-             required>
-    </mat-form-field>
-  </p>
-  <p>
-    <button mat-raised-button type="submit" [disabled]="!loginForm.form.valid">Login</button>
-  </p>
-</form>
+    <div class="flex flex-col gap-4">
+      <h2 class="text-xl font-medium">Login</h2>
+      <form (ngSubmit)="login()" class="flex flex-col gap-4" #loginForm="ngForm">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput id="username" type="text" name="username" [(ngModel)]="username"
+                 required>
+        </mat-form-field>
 
-<p>{{ message }}</p>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput id="password" name="password" [(ngModel)]="password" required
+                 [type]="hidePassword ? 'password' : 'text'">
+          <button mat-icon-button matSuffix
+                  (click)="hidePassword = !hidePassword"
+                  [attr.aria-label]="'Toggle password visibility'"
+                  [attr.aria-pressed]="!hidePassword"
+                  type="button">
+            <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+        </mat-form-field>
+        <p>{{ message }}</p>
+        <button matButton="filled" type="submit" [disabled]="!loginForm.form.valid">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
